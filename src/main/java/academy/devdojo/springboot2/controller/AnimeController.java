@@ -1,11 +1,11 @@
 package academy.devdojo.springboot2.controller;
 
+
 import academy.devdojo.springboot2.Service.AnimeService;
 import academy.devdojo.springboot2.domain.Anime;
 import academy.devdojo.springboot2.util.DateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
