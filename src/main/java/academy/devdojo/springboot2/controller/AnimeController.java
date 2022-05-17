@@ -36,4 +36,10 @@ public class AnimeController {
     public ResponseEntity<Anime> save(@RequestBody Anime anime){
         return new ResponseEntity<>(AnimeService.save(anime), HttpStatus.CREATED);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        animeService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
