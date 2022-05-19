@@ -3,6 +3,7 @@ package academy.devdojo.springboot2.handler;
 import academy.devdojo.springboot2.exception.BadRequestException;
 import academy.devdojo.springboot2.exception.BadRequestExceptionDetails;
 import academy.devdojo.springboot2.exception.ExceptionDetails;
+import academy.devdojo.springboot2.exception.ValidationExceptionDetails;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,11 +39,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(","));
-        fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(","));
+        
+        String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
+        String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(","));
 
         return new ResponseEntity<>(
-                BadRequestExceptionDetails.builder()
+                ValidationExceptionDetails.builder()
                         .timestamp(LocalDateTime.now())
                         .status(HttpStatus.BAD_REQUEST.value())
                         .title("Bad Request Exception, Invalid Fields")
@@ -52,6 +54,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .fieldsMessage(fieldsMessage)
                         .build(), HttpStatus.BAD_REQUEST);
     }
+
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(

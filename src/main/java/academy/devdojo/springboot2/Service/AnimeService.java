@@ -9,11 +9,9 @@ import academy.devdojo.springboot2.requests.AnimePutRequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -21,7 +19,7 @@ import java.util.List;
 public class AnimeService {
 
     private final AnimeRepository animeRepository;
-    public Page<Anime> listAll() {
+    public Page<Anime> listAll(Pageable pageable) {
         return animeRepository.findAll(pageable);
     }
 
