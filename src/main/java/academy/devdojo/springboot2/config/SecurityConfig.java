@@ -17,10 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 @SuppressWarnings("java:S5344")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-<<<<<<< HEAD
     private final DevDojoUserDetailsService devDojoUserDetailsService;
-=======
->>>>>>> f95d8676c9a8e216592ca5cda0da25f622779e22
+
     /**
      * BasicAuthenticationFilter
      * UsernamePasswordAuthenticationFilter
