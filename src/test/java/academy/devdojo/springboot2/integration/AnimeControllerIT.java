@@ -76,7 +76,7 @@ class AnimeControllerIT {
                 .hasSize(1);
 
 
-        Assertions.assertThat(animes.toList().get(0).getName()).isEqualTo(expectedName);
+        Assertions.assertThat(animes.get(0).getName()).isEqualTo(expectedName);
     }
 
     @Test
@@ -117,7 +117,6 @@ class AnimeControllerIT {
     @Test
     @DisplayName("findByName returns an empty list of anime is not found")
     void findByName_ReturnsListOfEmptyAnime_WhenAnimeIsNotFound() {
-        String url = String.format("animes/find?name=%s",expectedName);
 
         List<Anime> animes = testRestTemplate.exchange("animes/find?name=dbz", HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Anime>>() {
